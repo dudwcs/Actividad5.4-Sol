@@ -27,7 +27,7 @@ if (isset($_SESSION['cesta'])) {
     <!-- css Fontawesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
           integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-    <title>Tema 4</title>
+    <title>Cesta de la compra</title>
 </head>
 <body style="background: gray">
 <div class="float float-right d-inline-flex mt-2">
