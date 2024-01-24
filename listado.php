@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once 'util_cookies.php';
+
 if (!isset($_SESSION['nombre'])) {
     header('Location:login.php');
 }
@@ -36,27 +38,14 @@ if (isset($_POST['comprar'])) {
     $datos = consultarProducto($_POST['id']);
     if ($datos !== false) {
         $_SESSION['cesta'][$datos->id] = $datos->id;
+        
+        gestionar_cookie_familia($datos->familia);
     }
 }
 ?>
 
 <body style="background: gray">
-    <div class="float float-right d-inline-flex mt-2">
-        <i class="fa fa-shopping-cart mr-2 fa-2x"></i>
-        <?php
-        if (isset($_SESSION['cesta'])) {
-            $cantidad = count($_SESSION['cesta']);
-            echo "<input type='text' disabled class='form-control mr-2 bg-transparent text-white' value='$cantidad' size='2px'>";
-        } else {
-            echo "<input type='text' disabled class='form-control mr-2 bg-transparent text-white' value='0' size='2px'>";
-        }
-
-        ?>
-        <i class="fas fa-user mr-3 fa-2x"></i>
-        <input type="text" size='10px' value="<?php echo $_SESSION['nombre']; ?>" class="form-control
-    mr-2 bg-transparent text-white" disabled>
-        <a href="cerrar.php" class="btn btn-warning mr-2">Salir</a>
-    </div>
+<?php require_once 'header_view.php' ?>
     <br>
     <h4 class="container text-center mt-4 font-weight-bold">Tienda onLine</h4>
     <div class="container mt-3">
